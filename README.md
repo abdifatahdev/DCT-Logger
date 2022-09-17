@@ -10,6 +10,9 @@ DCT-Logger is an internal app for data center technician department where tech a
 | 01  |       [DCT-Logger Web App](https://dct-logger.netlify.app/)       | [Live Demo](https://dct-logger.netlify.app/)  |
 
 
+[DCT-Logger Web App](https://dct-logger.netlify.app/)       | [Live Demo](https://dct-logger.netlify.app/)  |
+
+
 
 
 
