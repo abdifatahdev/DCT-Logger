@@ -5,6 +5,11 @@ DCT-Logger is an internal app for data center technician department where tech a
 [DCT-Logger Web App]([https://github.com/abdifatahdev/JS-mini-projects/tree/master/light-dark-theme](https://dct-logger.netlify.app/))       | [Live Demo](https://dct-logger.netlify.app/)  |
 
 
+|  #  |            Project             | Live Demo |
+| :-: | :----------------------------: | :-------: |
+| 01  |       [DCT-Logger Web App](https://dct-logger.netlify.app/)       | [Live Demo](https://dct-logger.netlify.app/)  |
+
+
 
 
 
