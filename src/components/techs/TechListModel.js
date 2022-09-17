@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import TechItem from "./TechItem";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getTechs } from "../../actions/techActions";
+import TechItem from "./TechItem";
+import { getTechs } from "../../Actions/techActions";
 
 const TechListModal = ({ getTechs, tech: { techs, loading } }) => {
   useEffect(() => {
@@ -17,23 +17,17 @@ const TechListModal = ({ getTechs, tech: { techs, loading } }) => {
         <ul className="collection">
           {!loading &&
             techs !== null &&
-            techs.map(tech => <TechItem tech={tech} key={tech.id} />)}
+            techs.map((tech) => <TechItem key={tech.id} tech={tech} />)}
         </ul>
       </div>
     </div>
   );
 };
-
 TechListModal.propTypes = {
   tech: PropTypes.object.isRequired,
-  getTechs: PropTypes.func.isRequired
+  getTech: PropTypes.func,
 };
-
-const mapStateToProps = state => ({
-  tech: state.tech
+const mapStateToProps = (state) => ({
+  tech: state.tech,
 });
-
-export default connect(
-  mapStateToProps,
-  { getTechs }
-)(TechListModal);
+export default connect(mapStateToProps, { getTechs })(TechListModal);

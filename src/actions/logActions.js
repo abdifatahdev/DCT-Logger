@@ -1,165 +1,150 @@
+import { apiDomain } from "../utils/apiDomain";
 import {
   GET_LOGS,
   SET_LOADING,
   LOGS_ERROR,
   ADD_LOG,
   DELETE_LOG,
+  UPDATE_LOG,
+  SEARCH_LOGS,
   SET_CURRENT,
   CLEAR_CURRENT,
-  UPDATE_LOG,
-  SEARCH_LOGS
 } from "./types";
 
-// without thunk onject is returned
-// Thunk return an function that we have to dispatch
-// async call
-
-// export const getLogs = () => {
-//   return async dispatch => {
-//     setLoading();
-
-//     const res = await fetch("./logs");
-//     const data = await res.json();
-
-//     dispatch({
-//       type: GET_LOGS,
-//       payload: data
-//     });
-//   };
-// };
-
-// Get logs from server
-export const getLogs = () => async dispatch => {
-  try {
+/*export const getLogs = () => {
+  return async (dispatch) => {
     setLoading();
-
-    const res = await fetch("https://it-logger-api.herokuapp.com/logs");
+    const res = await fetch("/logs");
     const data = await res.json();
 
     dispatch({
       type: GET_LOGS,
-      payload: data
+      payload: data,
     });
-  } catch (error) {
+  };
+};*/
+//GET logs from server
+export const getLogs = () => async (dispatch) => {
+  try {
+    setLoading();
+    const res = await fetch(`${apiDomain()}/logs`);
+    const data = await res.json();
+
+    dispatch({
+      type: GET_LOGS,
+      payload: data,
+    });
+  } catch (err) {
     dispatch({
       type: LOGS_ERROR,
-      payload: error.message
+      payload: err.response.statusText,
     });
   }
 };
 
-// Add new log
-export const addLog = log => async dispatch => {
+//Add new Log
+export const addLog = (log) => async (dispatch) => {
   try {
     setLoading();
-
-    const res = await fetch("https://it-logger-api.herokuapp.com/logs", {
+    const res = await fetch(`${apiDomain()}/logs`, {
       method: "POST",
       body: JSON.stringify(log),
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     });
     const data = await res.json();
 
     dispatch({
       type: ADD_LOG,
-      payload: data
+      payload: data,
     });
-  } catch (error) {
+  } catch (err) {
     dispatch({
       type: LOGS_ERROR,
-      payload: error.message
+      payload: err.response.statusText,
     });
   }
 };
 
 // Delete log from server
-export const deleteLog = id => async dispatch => {
+export const deleteLog = (id) => async (dispatch) => {
   try {
     setLoading();
-
-    await fetch(`https://it-logger-api.herokuapp.com/logs/${id}`, {
-      method: "DELETE"
+    await fetch(`${apiDomain()}/logs/${id}`, {
+      method: "DELETE",
     });
 
     dispatch({
       type: DELETE_LOG,
-      payload: id
+      payload: id,
     });
-  } catch (error) {
+  } catch (err) {
     dispatch({
       type: LOGS_ERROR,
-      payload: error.message
+      payload: err.response.statusText,
     });
   }
 };
-
-// Update log on server
-export const updateLog = log => async dispatch => {
+// Update log from server
+export const updateLog = (log) => async (dispatch) => {
   try {
     setLoading();
-
-    const res = await fetch(`https://it-logger-api.herokuapp.com/logs/${log.id}`, {
+    const res = await fetch(`${apiDomain()}/logs/${log.id}`, {
       method: "PUT",
       body: JSON.stringify(log),
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     });
-
     const data = await res.json();
 
     dispatch({
       type: UPDATE_LOG,
-      payload: data
+      payload: data,
     });
-  } catch (error) {
+  } catch (err) {
     dispatch({
       type: LOGS_ERROR,
-      payload: error.message
+      payload: err.response.statusText,
     });
   }
 };
+// Search server logs
+export const searchLogs = (text) => async (dispatch) => {
+  try {
+    setLoading();
+    const res = await fetch(`${apiDomain()}/logs?q=${text}`);
+    const data = await res.json();
 
-// Set current log
-export const setCurrent = log => {
+    dispatch({
+      type: SEARCH_LOGS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: LOGS_ERROR,
+      payload: err.response.statusText,
+    });
+  }
+};
+// set current log
+export const setCurrent = (log) => {
   return {
     type: SET_CURRENT,
-    payload: log
+    payload: log,
   };
 };
 
 // Clear current log
 export const clearCurrent = () => {
   return {
-    type: CLEAR_CURRENT
+    type: CLEAR_CURRENT,
   };
 };
-
-// Set loading to True
+// Set loading to true
 export const setLoading = () => {
   return {
-    type: SET_LOADING
+    type: SET_LOADING,
   };
-};
-
-// Search server logs
-export const searchLogs = text => async dispatch => {
-  try {
-    setLoading();
-
-    const res = await fetch(`https://it-logger-api.herokuapp.com/logs?q=${text}`);
-    const data = await res.json();
-
-    dispatch({
-      type: SEARCH_LOGS,
-      payload: data
-    });
-  } catch (error) {
-    dispatch({
-      type: LOGS_ERROR,
-      payload: error.message
-    });
-  }
 };

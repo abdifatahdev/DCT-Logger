@@ -1,24 +1,22 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { searchLogs } from "../../actions/logActions";
+import { searchLogs } from "../../Actions/logActions";
 
-const Searchbar = ({ searchLogs }) => {
+const SearchBar = ({ searchLogs }) => {
   const text = useRef("");
-
-  const onChange = e => {
+  const onChange = (e) => {
     searchLogs(text.current.value);
   };
-
   return (
-    <nav style={{ marginBottom: "30px" }} className="blue">
+    <nav style={{ marginBottom: "30px" }} className=" light-blue accent-4">
       <div className="nav-wrapper">
         <form>
           <div className="input-field">
             <input
               id="search"
               type="search"
-              placeholder="Search Logs"
+              placeholder="Search Logs..."
               ref={text}
               onChange={onChange}
             />
@@ -32,12 +30,7 @@ const Searchbar = ({ searchLogs }) => {
     </nav>
   );
 };
-
-Searchbar.propTypes = {
-  searchLogs: PropTypes.func.isRequired
+SearchBar.propTypes = {
+  searchLogs: PropTypes.func.isRequired,
 };
-
-export default connect(
-  null,
-  { searchLogs }
-)(Searchbar);
+export default connect(null, { searchLogs })(SearchBar);
