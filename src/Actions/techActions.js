@@ -50,6 +50,7 @@ export const addTech = (tech) => async (dispatch) => {
   }
 };
 
+// Delete technician from server
 export const deleteTech = (id) => async (dispatch) => {
   try {
     setLoading();
