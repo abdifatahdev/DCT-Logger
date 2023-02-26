@@ -1,7 +1,7 @@
 export function apiDomain() {
   const production = process.env.NODE_ENV === "production";
   return production
-    ? "https://dct-api.onrender.com/"
+    ? "https://dct-api.onrender.com"
     : "http://localhost:5000";
 }
 
