@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
-import "moment/locale/ct";
+import "moment/locale/es";
 import { connect } from "react-redux";
 import { deleteLog, setCurrent } from "../../Actions/logActions";
 
@@ -24,9 +24,11 @@ const LogItem = ({ log, deleteLog, setCurrent }) => {
         </a>
         <br />
         <span className="grey-text">
-          <span className="black-text">ID #{id}</span> last updated by 
+          <span className="black-text">ID #{id}</span> last update by 
           <span className="black-text">{tech}</span> on{" "}
-          <Moment format='MMMM Do YYYY, h:mm:ss a' local="ct"> {date} </Moment>
+          <Moment format="DD MMMM  YYYY,h:mm:ss a" local="es">
+            {date}
+          </Moment>
         </span>
         <a
           href="#!"
