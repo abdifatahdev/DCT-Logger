@@ -3,7 +3,7 @@
     {
       "message": "Changed control board on A150-1-3",
       "attention": false,
-      "tech": "Kevin Hel",
+      "tech": "Kevin Halligan",
       "date": "2022-09-16T18:16:37.389Z",
       "id": 2
     },
@@ -38,7 +38,7 @@
     {
       "id": 2,
       "firstName": "Kevin",
-      "lastName": "Hel"
+      "lastName": "Halligan"
     },
     {
       "id": 3,
