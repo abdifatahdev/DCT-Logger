@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
-import "moment/local/ct";
+import "moment/locale/ct";
 import { connect } from "react-redux";
 import { deleteLog, setCurrent } from "../../Actions/logActions";
 
